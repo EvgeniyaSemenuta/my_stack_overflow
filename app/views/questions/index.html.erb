@@ -10,8 +10,8 @@
   </tr>
 
 <% @questions.each do |question| %>
-  <tr>
-    <td><%= question.title %></td>
+  <tr id="question_<%= question.id %>">
+    <td class="title"><%= question.title %></td>
     <td><%= question.created_at.to_s(:db) %></td>
     <td><%= link_to 'Show', question %></td>
     <td><%= link_to 'Edit', edit_question_path(question) %></td>
