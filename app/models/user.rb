@@ -9,5 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, 
   								:login, :birth_date, :country, :city, :address
 
+  has_many :questions
+
   validates :login, presence: true
 end

@@ -8,15 +8,15 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = Question.new
+    @question = current_user.questions.build
   end
 
   def edit
-    @question = Question.find(params[:id])
+    @question = current_user.questions.find(params[:id])
   end
 
   def create
-    @question = Question.new(params[:question])
+    @question = current_user.questions.build params[:question]
 
     if @question.save
       redirect_to @question, notice: 'Question was successfully created.'
@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question = Question.find(params[:id])
+    @question = current_user.questions.find(params[:id])
 
     if @question.update_attributes(params[:question])
       redirect_to @question, notice: 'Question was successfully updated.'
@@ -36,7 +36,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = Question.find(params[:id])
+    @question = current_user.questions.find(params[:id])
     @question.destroy
 
     redirect_to questions_url
