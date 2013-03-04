@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<div class="question">
+	<div><%= @question.created_at.to_s(:db) %></div>
+	<div>Title</div>
+	<div class="title"><%= @question.title %></div>
+	<div>Text</div>
+	<div class="text"><%= @question.text %></div>
+</div>
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>
+
