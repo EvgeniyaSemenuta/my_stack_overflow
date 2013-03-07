@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe "new question page" do
+  before do
+    user = FactoryGirl.create :user
+    sign_in user
+  end
+  
   it "should create new question" do
     visit new_question_path
 

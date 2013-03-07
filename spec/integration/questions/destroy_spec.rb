@@ -1,8 +1,14 @@
 require 'spec_helper'
 
 describe "destroy question" do
+
+  before do
+    @user = FactoryGirl.create(:user)
+    sign_in(@user)
+  end
+
   it "should destroy question" do
-    question = FactoryGirl.create(:question, title: "jQuery", text: "How to insert text to textarea?")   
+    question = FactoryGirl.create(:question, user: @user, title: "jQuery", text: "How to insert text to textarea?")   
     
     visit questions_path
     
