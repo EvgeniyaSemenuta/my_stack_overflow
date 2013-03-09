@@ -1,0 +1,11 @@
+p#notice = notice
+
+div.question
+	h3.title = @question.title
+	div.text.lead = @question.text
+	div.pull-right = @question.created_at.to_s(:db)
+
+br
+= link_to 'Edit', edit_question_path(@question)
+= " | "
+= link_to 'Back', questions_path
