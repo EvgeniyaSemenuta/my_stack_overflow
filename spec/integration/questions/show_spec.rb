@@ -38,6 +38,37 @@ describe "show question page" do
 	  	page.should have_selector("#answer_#{answer2.id}", text: "It's hard")
 	  	page.should_not have_selector("#answer_#{answer3.id}")
 	  end
+    
+    it "should update the answer" do
+      question = FactoryGirl.create(:question)
+	 	  answer = FactoryGirl.create(:answer, question: question, text: "hello")
 
+	    visit question_path(question)
+	    
+	    page.should have_selector("#answer_#{answer.id} .text", text: "hello")
+	  
+	    within("#answer_#{answer.id}") do
+      	click_link "Edit"
+      end
+    
+	    fill_in "answer_text", with: "good bye"
+	    click_button "Update Answer"
+	    
+	    page.should have_selector("#notice", text: "Answer was successfully updated.")
+	    page.should have_selector("#answer_#{answer.id} .text", text: "good bye")
+	  end
+		
+		it "should destroy the answer" do
+      question = FactoryGirl.create(:question)
+	 	  answer = FactoryGirl.create(:answer, question: question)
+
+	    visit question_path(question)
+	    
+	    within("#answer_#{answer.id}") do
+      	click_link "Destroy"
+      end
+	    
+	    page.should_not have_selector("#answer_#{answer.id}")
+	  end
 	end
 end
