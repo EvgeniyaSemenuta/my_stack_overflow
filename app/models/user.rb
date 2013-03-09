@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   								:login, :birth_date, :country, :city, :address
 
   has_many :questions
+  has_many :answers
 
   validates :login, presence: true
 end
