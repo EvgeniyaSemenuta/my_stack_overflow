@@ -12,5 +12,8 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
 
+  ROLES = ['admin', 'moderator']
+
   validates :login, presence: true
+  validates :role, inclusion: { in: ROLES }, allow_nil: true
 end
