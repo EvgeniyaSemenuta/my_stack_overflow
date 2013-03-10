@@ -6,11 +6,10 @@
       ul
         - answer.errors.full_messages.each do |msg|
           li = msg
-    
   div
-    = f.label :text 
+    = f.label :text
     br
     = f.text_area :text, :cols => 80, :rows => 10
-  
+
   div.actions
     = f.submit

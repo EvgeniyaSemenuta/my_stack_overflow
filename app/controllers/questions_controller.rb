@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  load_resource :question, only: [:show]
-  load_resource :question, through: :current_user, only: [:edit, :new, :create, :update, :destroy]
+  load_and_authorize_resource :question, only: [:show, :destroy]
+  load_and_authorize_resource :question, through: :current_user, only: [:edit, :new, :create, :update]
 
   def index
     @questions = Question.all

@@ -1,13 +1,14 @@
 p#notice = notice
 
 div.question
-	h3.title = @question.title
-	div.text.lead = @question.text
-	div.pull-right = @question.created_at.to_s(:db)
+  h3.title = @question.title
+  div.text.lead = @question.text
+  div.pull-right = @question.created_at.to_s(:db)
 
 br
-= link_to 'Edit', edit_question_path(@question)
-= " | "
+- if can? :update, @question
+  = link_to 'Edit', edit_question_path(@question)
+  = " | "
 = link_to 'Back', questions_path
 br
 
@@ -15,14 +16,16 @@ h3 Answers
 
 ul#answers
   - @question.answers.each do |answer|
-	    li id="answer_#{answer.id}"
-	      div.text = answer.text
-	      div.pull-right
-	      	div = answer.created_at.to_s(:db)
-	      	div = answer.user.login
-      	= link_to 'Edit', edit_question_answer_path(@question, answer)
-      	= " | "
-      	= link_to 'Destroy', question_answer_path(@question, answer), method: :delete, data: { confirm: 'Are you sure?' }
+    li id="answer_#{answer.id}"
+      div.text = answer.text
+      div.pull-right
+        div = answer.created_at.to_s(:db)
+        div = answer.user.login
+      div.clearfix
+      - if can? :update, answer
+        = link_to 'Edit', edit_question_answer_path(@question, answer)
+      - if can? :destroy, answer
+        = link_to 'Destroy', question_answer_path(@question, answer), method: :delete, data: { confirm: 'Are you sure?' }
 br
 
 = render 'answers/form', answer: @question.answers.new, question: @question
