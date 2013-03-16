@@ -25,6 +25,11 @@ FactoryGirl.define do
       role User::MODERATOR
     end
 
+    trait :with_admin_role do
+      role User::ADMIN
+    end
+
     factory :moderator, traits: [:with_moderator_role]
-	end
+    factory :admin, traits: [:with_admin_role]
+  end
 end

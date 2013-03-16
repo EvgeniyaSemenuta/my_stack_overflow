@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  load_and_authorize_resource :question, only: [:show, :destroy]
-  load_and_authorize_resource :question, through: :current_user, only: [:edit, :new, :create, :update]
+  load_and_authorize_resource :question, only: [:show, :destroy, :edit, :update]
+  load_and_authorize_resource :question, through: :current_user, only: [:new, :create]
 
   def index
     @questions = Question.all
@@ -17,17 +17,19 @@ class QuestionsController < ApplicationController
 
   def create
     if @question.save
-      redirect_to @question, notice: 'Question was successfully created.'
+      flash[:notice] = "Question was successfully created."
+      render :show
     else
-      render action: "new"
+      render :new
     end
   end
 
   def update
     if @question.update_attributes(params[:question])
-      redirect_to @question, notice: 'Question was successfully updated.'
+      flash[:notice] = 'Question was successfully updated.'
+      render :show
     else
-      render action: "edit"
+      render :edit
     end
   end
 

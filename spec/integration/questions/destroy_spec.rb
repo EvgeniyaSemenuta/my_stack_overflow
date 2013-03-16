@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'integration/integration_helper'
 
 describe "destroy question" do
 

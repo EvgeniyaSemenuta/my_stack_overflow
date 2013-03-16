@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'integration/integration_helper'
 
 describe "show question page" do
   it "should display all information of question" do
