@@ -11,6 +11,17 @@ describe "show question page" do
     page.should have_selector(".question .text", text: "How to insert text to textarea?")
   end
 
+  it "should display question's tags" do
+    question = FactoryGirl.create(:question, tag_list: "tag1, tag2")
+    FactoryGirl.create(:question, tag_list: "tag3")
+
+    visit question_path(question)
+
+    page.should have_selector("#tags", text: "tag1")
+    page.should have_selector("#tags", text: "tag2")
+    page.should_not have_selector("#tags", text: "tag3")
+  end
+
   context "[answers]" do
 		it "should create new answer" do
 		  user = FactoryGirl.create :user
@@ -39,6 +50,7 @@ describe "show question page" do
 	  	page.should have_selector("#answer_#{answer2.id}", text: "It's hard")
 	  	page.should_not have_selector("#answer_#{answer3.id}")
 	  end
+
     context "[moderating]" do
       before do
         @moderator = FactoryGirl.create(:moderator)

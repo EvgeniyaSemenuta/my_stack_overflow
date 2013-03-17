@@ -32,4 +32,8 @@ FactoryGirl.define do
     factory :moderator, traits: [:with_moderator_role]
     factory :admin, traits: [:with_admin_role]
   end
+
+  factory :tag, class: ActsAsTaggableOn::Tag do
+    sequence(:name) { |n| "tag#{n}"}
+  end
 end

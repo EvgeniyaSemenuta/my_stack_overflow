@@ -27,4 +27,17 @@ describe "new question page" do
     page.should have_selector("#error_explanation", text: "Text can't be blank")
   end
 
+  it "should add the tag to the question" do
+    tag = FactoryGirl.create(:tag, name: "tag1")
+
+    visit new_question_path
+
+    fill_in "Title", with: "jQuery"
+    fill_in "Text", with: "How to insert text to textarea?"
+    check "tag1"
+    click_button "Create Question"
+
+    page.should have_selector("#tags", text: "tag1")
+  end
+
 end
