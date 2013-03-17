@@ -6,15 +6,24 @@
       ul
         - @question.errors.full_messages.each do |msg|
           li = msg
-    
+
   div
     = f.label :title
     br
     = f.text_field :title
   div
-    = f.label :text 
+    = f.label :text
     br
     = f.text_area :text, :cols => 80, :rows => 10
-  
+  div
+    = label_tag "tag_tag1", "jQuery"
+    = check_box_tag "question[tag_array][]", "jQuery", false, id: 'tag_tag1'
+    = label_tag "tag_tag2", "PHP"
+    = check_box_tag "question[tag_array][]", "PHP", false, id: 'tag_tag2'
+    div#tags
+
   div.actions
     = f.submit
+
+= text_field_tag :new_tag
+br
