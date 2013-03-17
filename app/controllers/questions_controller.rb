@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.all
+    @tags = Question.tag_counts_on(:tags)
   end
 
   def show
