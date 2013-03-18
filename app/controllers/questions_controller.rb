@@ -4,9 +4,9 @@ class QuestionsController < ApplicationController
 
   def index
     if params[:tag_id]
-      @questions = Question.joins(:tags).where(tags: {id: params[:tag_id]})
+      @questions = Question.joins(:tags).where(tags: {id: params[:tag_id]}).order("questions.created_at DESC")
     else
-      @questions = Question.all
+      @questions = Question.order("questions.created_at DESC")
     end
     @tags = Question.tag_counts_on(:tags)
   end
