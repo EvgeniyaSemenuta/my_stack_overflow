@@ -4,7 +4,7 @@ table.table.table-striped
   tr
     th Question
     th Date
-    th
+    th Tags
     th
     th
 
@@ -12,6 +12,7 @@ table.table.table-striped
     tr id="question_#{question.id}"
       td.title = link_to question.title, question_path(question)
       td = question.created_at.to_s(:db)
+      td.tags = question.tag_list.join(" ")
       td
         - if can? :update, question
           = link_to 'Edit', edit_question_path(question)
