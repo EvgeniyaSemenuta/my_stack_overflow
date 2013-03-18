@@ -3,7 +3,11 @@ class QuestionsController < ApplicationController
   load_and_authorize_resource :question, through: :current_user, only: [:new, :create]
 
   def index
-    @questions = Question.all
+    if params[:tag_id]
+      @questions = Question.joins(:tags).where(tags: {id: params[:tag_id]})
+    else
+      @questions = Question.all
+    end
     @tags = Question.tag_counts_on(:tags)
   end
 
