@@ -3,6 +3,7 @@ MyStackOverflow::Application.routes.draw do
 
   resources :questions do
   	resources :answers, only: [:create, :edit, :update, :destroy]
+    resources :votes, only: [:create]
 	end
 
   root to: 'questions#index'
