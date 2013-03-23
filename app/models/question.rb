@@ -15,4 +15,8 @@ class Question < ActiveRecord::Base
   def tag_array= tag_array
     self.tag_list = tag_array.join(", ")
   end
+
+  def rating
+    self.votes.sum(:rating)
+  end
 end
