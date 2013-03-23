@@ -8,6 +8,7 @@ gem 'rails', '3.2.12'
 gem 'sqlite3'
 
 gem 'slim'
+gem 'therubyracer'
 
 gem 'devise'
 
