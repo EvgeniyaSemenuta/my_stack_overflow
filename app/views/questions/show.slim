@@ -3,7 +3,8 @@ p#notice = notice
 div.question
   h3.title = @question.title
   = @question.rating
-  div = render 'votes/form', votable: @question
+  - if current_user && current_user.voted_for?(@question)
+    div = render 'votes/form', votable: @question
   div.text.lead = @question.text
   div.pull-right = @question.created_at.to_s(:db)
 

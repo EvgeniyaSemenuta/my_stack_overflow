@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, 
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
   								:login, :birth_date, :country, :city, :address
 
   has_many :questions
@@ -30,5 +30,9 @@ class User < ActiveRecord::Base
 
   def user?
     self.role.nil?
+  end
+
+  def voted_for? votable
+    self.votes.find_by_votable_id_and_votable_type(votable.id, votable.class.to_s).present?
   end
 end
