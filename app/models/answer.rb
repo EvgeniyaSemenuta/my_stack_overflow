@@ -8,4 +8,8 @@ class Answer < ActiveRecord::Base
 	validates :text, presence: true
 	validates :user, presence: true
 	validates :question, presence: true
+
+  def rating
+    self.votes.sum(:rating)
+  end
 end

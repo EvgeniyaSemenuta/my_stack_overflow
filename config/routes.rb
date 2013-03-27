@@ -6,5 +6,9 @@ MyStackOverflow::Application.routes.draw do
     resources :votes, only: [:create]
 	end
 
+  resources :answers, only: [] do
+    resources :votes, only: [:create]
+  end
+
   root to: 'questions#index'
 end
