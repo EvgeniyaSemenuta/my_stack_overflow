@@ -1,7 +1,7 @@
 class VotesController < ApplicationController
   load_resource :question
   load_resource :answer
-  load_resource :vote, through: :current_user
+  load_and_authorize_resource :vote, through: :current_user
 
   def create
     @vote.votable = @question || @answer
