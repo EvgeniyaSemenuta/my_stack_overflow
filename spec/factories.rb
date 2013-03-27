@@ -36,4 +36,10 @@ FactoryGirl.define do
   factory :tag, class: ActsAsTaggableOn::Tag do
     sequence(:name) { |n| "tag#{n}"}
   end
+
+  factory :vote do
+    association :votable, factory: :question
+    association :user
+    rating 1
+  end
 end

@@ -2,9 +2,10 @@ p#notice = notice
 
 div.question
   h3.title = @question.title
-  = @question.rating
-  - if current_user && !current_user.voted_for?(@question)
-    div = render 'votes/form', votable: @question
+  div.rating
+    = @question.rating
+    - if current_user && !current_user.voted_for?(@question)
+      div = render 'votes/form', votable: @question
   div.text.lead = @question.text
   div.pull-right = @question.created_at.to_s(:db)
 
@@ -28,9 +29,10 @@ ul#answers
       div.pull-right
         div = answer.created_at.to_s(:db)
         div = answer.user.login
-      = answer.rating
-      - if current_user && !current_user.voted_for?(answer)
-        div = render 'votes/form', votable: answer
+      div.rating
+        = answer.rating
+        - if current_user && !current_user.voted_for?(answer)
+          div = render 'votes/form', votable: answer
       div.clearfix
       - if can? :update, answer
         = link_to 'Edit', edit_question_answer_path(@question, answer)
