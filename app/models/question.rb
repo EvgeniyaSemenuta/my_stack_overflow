@@ -6,6 +6,7 @@ class Question < ActiveRecord::Base
 
   belongs_to :user
 	has_many :answers
+  has_many :votes, as: :votable
 
   validates :title, presence: true
   validates :text, presence: true
@@ -13,5 +14,9 @@ class Question < ActiveRecord::Base
 
   def tag_array= tag_array
     self.tag_list = tag_array.join(", ")
+  end
+
+  def rating
+    self.votes.sum(:rating)
   end
 end

@@ -4,6 +4,10 @@ class Ability
   def initialize(user)
     user ||= User.new
 
+    if user.persisted?
+      can :create, Vote
+    end
+
     if user.admin?
       can :manage, User
       can [:read, :create], [Question, Answer]
