@@ -1,0 +1,14 @@
+p#notice = notice
+
+div.user
+  h4.login = @user.login
+  div.email = @user.email
+  div.birth_date = @user.birth_date
+  div.country = @user.country
+  div.city = @user.city
+  div.address = @user.address
+br
+- if can? :update, @user
+  = link_to 'Edit', edit_user_path(@user)
+  = " | "
+= link_to 'Back', questions_path
