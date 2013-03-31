@@ -12,5 +12,22 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
 
+  ADMIN = 'admin'
+  MODERATOR = 'moderator'
+  ROLES = [ADMIN, MODERATOR]
+
   validates :login, presence: true
+  validates :role, inclusion: { in: ROLES }, allow_nil: true
+
+  def admin?
+    self.role == ADMIN
+  end
+
+  def moderator?
+    self.role == MODERATOR
+  end
+
+  def user?
+    self.role.nil?
+  end
 end

@@ -10,7 +10,7 @@ FactoryGirl.define do
 	  association :question
 	  sequence(:text) { |n| "answer-#{n}"}
 	end
-	
+
 	factory :user do
 		sequence(:email) { |n| "email#{n}@mail.ru"}
     password "12345678"
@@ -20,5 +20,16 @@ FactoryGirl.define do
     country "Russia"
     city "Tambov"
     address "Lenin st, 23/54"
-	end
+
+    trait :with_moderator_role do
+      role User::MODERATOR
+    end
+
+    trait :with_admin_role do
+      role User::ADMIN
+    end
+
+    factory :moderator, traits: [:with_moderator_role]
+    factory :admin, traits: [:with_admin_role]
+  end
 end

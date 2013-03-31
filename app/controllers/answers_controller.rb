@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
-  load_resource :question
-  load_resource :answer, through: :question
+  load_and_authorize_resource :question
+  load_and_authorize_resource :answer, through: :question
 
   def create
     @answer.user = current_user

@@ -1,11 +1,12 @@
 require 'spec_helper'
+require 'integration/integration_helper'
 
 describe "new question page" do
   before do
     user = FactoryGirl.create :user
     sign_in user
   end
-  
+
   it "should create new question" do
     visit new_question_path
 
@@ -14,7 +15,7 @@ describe "new question page" do
     click_button "Create Question"
 
     page.should have_selector("#notice", text: "Question was successfully created.")
-    page.should have_selector(".question .title", text: "jQuery") 
+    page.should have_selector(".question .title", text: "jQuery")
   end
 
   it "should validate question" do

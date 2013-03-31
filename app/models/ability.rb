@@ -2,6 +2,23 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    user ||= User.new
+
+    if user.admin?
+      can :manage, User
+      can [:read, :create], [Question, Answer]
+      can :update, [Question, Answer] do |resource|
+        resource.user_id == user.id
+      end
+    elsif user.moderator?
+      can :manage, [Question, Answer]
+    elsif user.user?
+      can [:read, :create], [Question, Answer]
+      can :update, [Question, Answer] do |resource|
+        resource.user_id == user.id
+      end
+    end
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -11,12 +28,12 @@ class Ability
     #     can :read, :all
     #   end
     #
-    # The first argument to `can` is the action you are giving the user 
+    # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
     # here are :read, :create, :update and :destroy.
     #
-    # The second argument is the resource the user can perform the action on. 
+    # The second argument is the resource the user can perform the action on.
     # If you pass :all it will apply to every resource. Otherwise pass a Ruby
     # class of the resource.
     #
