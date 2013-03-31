@@ -1,9 +1,14 @@
 require 'spec_helper'
 
 describe "edit question" do
+  before do
+    @user = FactoryGirl.create(:user)
+    sign_in(@user)
+  end
+
   it "should edit question" do
-    question = FactoryGirl.create(:question, title: "jQuery", text: "How to insert text to textarea?")   
-    
+    question = FactoryGirl.create(:question, user: @user, title: "jQuery", text: "How to insert text to textarea?")
+
     visit question_path(question)
     
     page.should have_selector(".question .title", text: "jQuery")
