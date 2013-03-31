@@ -5,6 +5,12 @@ FactoryGirl.define do
 	  sequence(:text) { |n| "text-#{n}"}
 	end
 
+	factory :answer do
+	  association :user
+	  association :question
+	  sequence(:text) { |n| "answer-#{n}"}
+	end
+	
 	factory :user do
 		sequence(:email) { |n| "email#{n}@mail.ru"}
     password "12345678"

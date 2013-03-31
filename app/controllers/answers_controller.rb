@@ -1,0 +1,29 @@
+class AnswersController < ApplicationController
+  load_resource :question
+  load_resource :answer, through: :question
+
+  def create
+    @answer.user = current_user
+
+    if @answer.save
+      redirect_to @question, notice: 'Answer was successfully created.'
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @answer.update_attributes(params[:answer])
+      redirect_to @question, notice: 'Answer was successfully updated.'
+    else
+      render action: "edit"
+    end
+  end
+
+  def destroy
+    @answer.destroy
+
+    redirect_to @question
+  end
+end
