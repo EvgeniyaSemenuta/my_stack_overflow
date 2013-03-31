@@ -1,6 +1,6 @@
 h1 Editing question
 
-= render 'form'
+= render 'form', question: @question, tag_names: @question.tag_list
 
 = link_to 'Show', @question
 =" | "

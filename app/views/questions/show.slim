@@ -5,6 +5,10 @@ div.question
   div.text.lead = @question.text
   div.pull-right = @question.created_at.to_s(:db)
 
+  div#tags
+    - @question.tag_list.each do |tag_name|
+      span.btn.btn-info = tag_name
+
 br
 - if can? :update, @question
   = link_to 'Edit', edit_question_path(@question)
