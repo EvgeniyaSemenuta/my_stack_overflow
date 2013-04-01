@@ -14,7 +14,7 @@
   div
     = f.label :birth_date
     br
-    = f.date_select :birth_date
+    = f.date_select :birth_date, start_year: 1940, end_year: 2010
   div
     = f.label :country
     br
