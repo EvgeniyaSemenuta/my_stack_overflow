@@ -14,6 +14,7 @@ class Ability
       can :update, [Question, Answer] do |resource|
         resource.user_id == user.id
       end
+      can :update, :role
     elsif user.moderator?
       can :manage, [Question, Answer]
     elsif user.user?

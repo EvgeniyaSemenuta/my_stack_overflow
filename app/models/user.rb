@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
 
   ADMIN = 'admin'
   MODERATOR = 'moderator'
-  ROLES = [ADMIN, MODERATOR]
+  USER = 'user'
+  ROLES = [ADMIN, MODERATOR, USER]
 
   validates :login, presence: true
   validates :role, inclusion: { in: ROLES }, allow_nil: true
@@ -29,7 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def user?
-    self.role.nil?
+    self.role.nil? || self.role == USER
   end
 
   def voted_for? votable

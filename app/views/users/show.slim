@@ -2,6 +2,8 @@ p#notice = notice
 
 div.user
   h4.login = @user.login
+  - if !@user.user?
+    i.role = "(#{@user.role})"
   div.email = @user.email
   div.birth_date = @user.birth_date
   div.country = @user.country

@@ -10,7 +10,9 @@ MyStackOverflow::Application.routes.draw do
     resources :votes, only: [:create]
   end
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    resource :role, only: [:update]
+  end
 
   root to: 'questions#index'
 end

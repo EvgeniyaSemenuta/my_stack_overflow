@@ -1,0 +1,8 @@
+= form_for(user, url: user_role_path(user), method: :put, html: { id: 'edit_role' }) do |f|
+  div
+    = f.label :role
+    br
+    = f.select :role, User::ROLES, selected: user.role || User::USER
+
+  div.actions
+    = f.submit "Update Role"
