@@ -16,6 +16,8 @@ gem "cancan"
 
 gem 'acts-as-taggable-on', '~> 2.3.1'
 
+gem 'paperclip'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

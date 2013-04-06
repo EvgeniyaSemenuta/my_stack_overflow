@@ -28,7 +28,9 @@ ul#answers
       div.text = answer.text
       div.pull-right
         div = answer.created_at.to_s(:db)
-        div = answer.user.login
+        div.user = link_to user_path(answer.user) do
+          = image_tag answer.user.avatar.url(:thumb)
+          = answer.user.login
       div.rating
         = answer.rating
         - if current_user && !current_user.voted_for?(answer)
