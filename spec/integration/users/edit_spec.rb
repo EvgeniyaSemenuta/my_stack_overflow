@@ -37,4 +37,31 @@ describe "edit user page" do
     page.should have_selector(".user .city", text: "Pekin")
     page.should have_selector(".user .address", text: "Dark av., 12/10")
   end
+
+  it "should edit user role" do
+    admin = FactoryGirl.create(:admin)
+    user = FactoryGirl.create(:user)
+    sign_in(admin)
+
+    visit user_path(user)
+
+    page.should_not have_selector(".user .role")
+
+    click_link "Edit"
+
+    select "moderator", from: "user_role"
+    click_button "Update Role"
+
+    page.should have_selector("#notice", text: "User role was successfully updated.")
+    page.should have_selector(".user .role", text: "moderator")
+  end
+
+  it "shouldn't show role form" do
+    user = FactoryGirl.create(:user)
+    sign_in(user)
+
+    visit edit_user_path(user)
+
+    page.should_not have_selector("#edit_role")
+  end
 end
