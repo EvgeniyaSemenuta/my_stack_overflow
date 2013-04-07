@@ -10,6 +10,7 @@ div.user
   div.country = @user.country
   div.city = @user.city
   div.address = @user.address
+  div.map = gmaps map_options: {auto_zoom: false, zoom: 15}, markers: {data: @user.to_gmaps4rails}
 br
 - if can? :update, @user
   = link_to 'Edit', edit_user_path(@user)
