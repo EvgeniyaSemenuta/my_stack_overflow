@@ -3,7 +3,7 @@ p#notice = notice
 div.question
   h3.title = @question.title
   div.rating
-    = @question.rating
+    span.rating-number = @question.rating
     - if current_user && !current_user.voted_for?(@question)
       div = render 'votes/form', votable: @question
   div.text.lead = @question.text
@@ -32,7 +32,7 @@ ul#answers
           = image_tag answer.user.avatar.url(:thumb)
           = answer.user.login
       div.rating
-        = answer.rating
+        span.rating-number = answer.rating
         - if current_user && !current_user.voted_for?(answer)
           div = render 'votes/form', votable: answer
       div.clearfix

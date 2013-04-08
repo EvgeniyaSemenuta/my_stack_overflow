@@ -9,3 +9,7 @@ $ ->
     $this.val ""
 
     false
+
+  $('form.new_vote').on 'ajax:success', (e, data, status, xhr)->
+    $(this).parents(".rating").find(".rating-number").html data["rating"]
+    $(this).remove()

@@ -6,8 +6,9 @@ class VotesController < ApplicationController
   def create
     @vote.votable = @question || @answer
     if @vote.save
-      flash[:notice] = "You voted."
-      redirect_to question_path(@question || @answer.question)
+      render json: {rating: @vote.votable.rating}
+    else
+      render json: true, status: 500
     end
   end
 end
