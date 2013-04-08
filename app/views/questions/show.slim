@@ -2,10 +2,7 @@ p#notice = notice
 
 div.question
   h3.title = @question.title
-  div.rating
-    span.rating-number = @question.rating
-    - if current_user && !current_user.voted_for?(@question)
-      div = render 'votes/form', votable: @question
+  = render "rating", votable: @question
   div.text.lead = @question.text
   div.pull-right = @question.created_at.to_s(:db)
 
@@ -31,10 +28,7 @@ ul#answers
         div.user = link_to user_path(answer.user) do
           = image_tag answer.user.avatar.url(:thumb)
           = answer.user.login
-      div.rating
-        span.rating-number = answer.rating
-        - if current_user && !current_user.voted_for?(answer)
-          div = render 'votes/form', votable: answer
+      = render "rating", votable: answer
       div.clearfix
       - if can? :update, answer
         = link_to 'Edit', edit_question_answer_path(@question, answer)

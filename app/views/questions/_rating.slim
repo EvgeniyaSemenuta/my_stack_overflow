@@ -1,0 +1,4 @@
+div.rating
+  span.rating-number = votable.rating
+  - if current_user && !current_user.voted_for?(votable)
+    div = render 'votes/form', votable: votable
