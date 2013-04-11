@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(:version => 20130407174307) do
   end
 
   create_table "questions", :force => true do |t|
-    t.string   "title",                     :null => false
-    t.string   "text",                      :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "user_id",    :default => 0, :null => false
+    t.string   "title",      :null => false
+    t.string   "text",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id",    :null => false
   end
 
   create_table "taggings", :force => true do |t|
