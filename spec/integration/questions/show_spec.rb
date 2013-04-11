@@ -23,7 +23,7 @@ describe "show question page" do
   end
 
   context "[votes]" do
-    it "should create positive vote" do
+    it "should create positive vote", js: true do
       user = FactoryGirl.create :user
       sign_in user
 
@@ -40,7 +40,7 @@ describe "show question page" do
       page.should have_selector(".question .rating", text: "1")
     end
 
-    it "should create negative vote" do
+    it "should create negative vote", js: true do
       user = FactoryGirl.create :user
       sign_in user
 
@@ -145,7 +145,7 @@ describe "show question page" do
     end
 
     context "[votes]" do
-      it "should create positive vote" do
+      it "should create positive vote", js: true do
         user = FactoryGirl.create :user
         sign_in user
 
@@ -163,7 +163,7 @@ describe "show question page" do
         page.should have_selector("#answer_#{answer.id} .rating", text: "1")
       end
 
-      it "should create negative vote" do
+      it "should create negative vote", js: true do
         user = FactoryGirl.create :user
         sign_in user
 
