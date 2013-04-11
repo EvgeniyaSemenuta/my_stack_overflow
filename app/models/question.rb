@@ -1,6 +1,8 @@
 class Question < ActiveRecord::Base
 
-	attr_accessible :title, :text, :tag_array
+  self.per_page = 10
+
+  attr_accessible :title, :text, :tag_array
 
 	acts_as_taggable
 

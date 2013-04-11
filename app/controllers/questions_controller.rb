@@ -3,10 +3,9 @@ class QuestionsController < ApplicationController
   load_and_authorize_resource :question, through: :current_user, only: [:new, :create]
 
   def index
+    @questions = Question.order("questions.created_at DESC").paginate(page: params[:page])
     if params[:tag_id]
-      @questions = Question.joins(:tags).where(tags: {id: params[:tag_id]}).order("questions.created_at DESC")
-    else
-      @questions = Question.order("questions.created_at DESC")
+      @questions = @questions.joins(:tags).where(tags: {id: params[:tag_id]})
     end
     @tags = Question.tag_counts_on(:tags)
   end

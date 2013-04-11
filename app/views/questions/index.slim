@@ -23,6 +23,7 @@ table.table.table-striped
       td
         - if can? :destroy, question
           = link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }
+= will_paginate @questions
 br
 div#tag_cloud
   - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class|
