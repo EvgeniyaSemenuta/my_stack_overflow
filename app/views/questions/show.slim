@@ -20,7 +20,7 @@ br
 h3 Answers
 
 ul#answers
-  - @question.answers.each do |answer|
+  - @question.answers.ordered_by_rating.each do |answer|
     = render "answers/answer", answer: answer
 br
 - if can? :create, Answer
