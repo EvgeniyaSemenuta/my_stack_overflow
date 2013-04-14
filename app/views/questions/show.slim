@@ -23,5 +23,5 @@ ul#answers
   - @question.answers.each do |answer|
     = render "answers/answer", answer: answer
 br
-
-= render 'answers/form', answer: @question.answers.new, question: @question
+- if can? :create, Answer
+  = render 'answers/form', answer: @question.answers.new, question: @question

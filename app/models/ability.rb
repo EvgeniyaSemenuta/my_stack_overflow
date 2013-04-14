@@ -6,21 +6,21 @@ class Ability
 
     if user.persisted?
       can :create, Vote
-    end
 
-    if user.admin?
-      can :manage, User
-      can [:read, :create], [Question, Answer]
-      can :update, [Question, Answer] do |resource|
-        resource.user_id == user.id
-      end
-      can :update, :role
-    elsif user.moderator?
-      can :manage, [Question, Answer]
-    elsif user.user?
-      can [:read, :create], [Question, Answer]
-      can :update, [Question, Answer] do |resource|
-        resource.user_id == user.id
+      if user.admin?
+        can :manage, User
+        can [:read, :create], [Question, Answer]
+        can :update, [Question, Answer] do |resource|
+          resource.user_id == user.id
+        end
+        can :update, :role
+      elsif user.moderator?
+        can :manage, [Question, Answer]
+      elsif user.user?
+        can [:read, :create], [Question, Answer]
+        can :update, [Question, Answer] do |resource|
+          resource.user_id == user.id
+        end
       end
     end
 
@@ -28,8 +28,7 @@ class Ability
       resource.id == user.id
     end
 
-    can :read, User
-
+    can :read, [Question, Answer, User]
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

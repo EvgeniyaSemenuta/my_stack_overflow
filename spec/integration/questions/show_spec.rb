@@ -104,6 +104,12 @@ describe "show question page" do
 	  	page.should_not have_selector("#answer_#{answer3.id}")
 	  end
 
+    it "should not display answer form for guest" do
+      question = FactoryGirl.create(:question)
+      visit question_path(question)
+      page.should_not have_selector("form#new_answer")
+    end
+
     context "[moderating]" do
       before do
         @moderator = FactoryGirl.create(:moderator)
