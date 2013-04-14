@@ -14,5 +14,9 @@ MyStackOverflow::Application.routes.draw do
     resource :role, only: [:update]
   end
 
+  namespace :api do
+    resources :questions, only: [:index, :show]
+  end
+
   root to: 'questions#index'
 end
