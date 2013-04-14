@@ -4,9 +4,8 @@ class AnswersController < ApplicationController
 
   def create
     @answer.user = current_user
-
     if @answer.save
-      redirect_to @question, notice: 'Answer was successfully created.'
+      render partial: "answer", locals: {answer: @answer}, content_type: 'text/html'
     end
   end
 

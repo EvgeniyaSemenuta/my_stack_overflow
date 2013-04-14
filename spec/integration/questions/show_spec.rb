@@ -77,7 +77,7 @@ describe "show question page" do
   end
 
   context "[answers]" do
-		it "should create new answer" do
+		it "should create new answer", js: true do
 		  user = FactoryGirl.create :user
 		  sign_in user
 
@@ -88,7 +88,6 @@ describe "show question page" do
 	    fill_in "answer_text", with: "It's easy"
 	    click_button "Create Answer"
 
-	    page.should have_selector("#notice", text: "Answer was successfully created.")
 	    page.should have_selector("#answers .text", text: "It's easy")
 	  end
 

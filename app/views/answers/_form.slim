@@ -1,15 +1,8 @@
-= form_for([question, answer]) do |f|
-  - if answer.errors.any?
-    div#error_explanation
-      h2 = "#{pluralize(answer.errors.count, "error")} prohibited this answer from being saved:"
-
-      ul
-        - answer.errors.full_messages.each do |msg|
-          li = msg
+= form_for([question, answer], remote: true, html: {id: "new_answer"}) do |f|
   div
     = f.label :text
     br
-    = f.text_area :text, :cols => 80, :rows => 10
+    = f.text_area :text, cols: 80, rows: 10, required: :required
 
   div.actions
     = f.submit

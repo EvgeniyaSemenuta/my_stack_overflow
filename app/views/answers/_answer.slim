@@ -1,0 +1,13 @@
+li id="answer_#{answer.id}"
+  div.text = answer.text
+  div.pull-right
+    div = answer.created_at.to_s(:db)
+    div.user = link_to user_path(answer.user) do
+      = image_tag answer.user.avatar.url(:thumb)
+      = answer.user.login
+  = render "questions/rating", votable: answer
+  div.clearfix
+  - if can? :update, answer
+    = link_to 'Edit', edit_question_answer_path(answer.question, answer)
+  - if can? :destroy, answer
+    = link_to 'Destroy', question_answer_path(answer.question, answer), method: :delete, data: { confirm: 'Are you sure?' }

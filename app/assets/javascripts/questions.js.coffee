@@ -13,3 +13,7 @@ $ ->
   $('form.new_vote').on 'ajax:success', (e, data, status, xhr)->
     $(this).parents(".rating").find(".rating-number").html data["rating"]
     $(this).remove()
+
+  $('form#new_answer').on 'ajax:success', (e, data, status, xhr)->
+    $("#answers").append data
+    $(this).find("#answer_text").val('')
