@@ -18,5 +18,7 @@ MyStackOverflow::Application.routes.draw do
     resources :questions, only: [:index, :show]
   end
 
+  get '/auth/:provider/callback', to: 'sessions#create'
+
   root to: 'questions#index'
 end

@@ -56,4 +56,14 @@ class User < ActiveRecord::Base
   def check_process?
     !self.address_updated?
   end
+
+  def self.find_or_create_from_auth_hash auth_hash
+    user = self.find_by_login(auth_hash['info']['nickname'])
+    unless user
+      user = self.new(login: auth_hash['info']['nickname'])
+      user.save(validate: false)
+    end
+
+    user
+  end
 end
