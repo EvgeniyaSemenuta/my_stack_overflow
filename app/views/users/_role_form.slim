@@ -1,8 +1,9 @@
-= form_for(user, url: user_role_path(user), method: :put, html: { id: 'edit_role' }) do |f|
-  div
-    = f.label :role
-    br
-    = f.select :role, User::ROLES, selected: user.role || User::USER
+= form_for(user, url: user_role_path(user), method: :put, html: { id: 'edit_role', class: 'form-horizontal' }) do |f|
+  div.control-group
+    = f.label :role, class: 'control-label'
+    div.controls
+      = f.select :role, User::ROLES, selected: user.role || User::USER
 
-  div.actions
-    = f.submit "Update Role"
+  div.control-group
+    div.actions.controls
+      = f.submit "Update Role", class: 'btn'

@@ -1,18 +1,27 @@
 p#notice = notice
 
 div.user
-  h4.login = @user.login
-  - if !@user.user?
-    i.role = "(#{@user.role})"
-  div.avatar = image_tag @user.avatar.url(:medium)
-  div.email = @user.email
-  div.birth_date = @user.birth_date
-  div.country = @user.country
-  div.city = @user.city
-  div.address = @user.address
-  div.map = gmaps map_options: {auto_zoom: false, zoom: 15}, markers: {data: @user.to_gmaps4rails}
-br
-- if can? :update, @user
-  = link_to 'Edit', edit_user_path(@user)
-  = " | "
-= link_to 'Back', questions_path
+  div.avatar.pull-left = image_tag @user.avatar.url(:medium)
+  div.inline-block
+    h4.login = @user.login
+    - if !@user.user?
+      i.role = "(#{@user.role})"
+    dl.dl-horizontal
+      dt Email
+      dd.email = @user.email
+      dt Birth Date
+      dd.birth_date = @user.birth_date
+      dt Country
+      dd.country = @user.country
+      dt City
+      dd.city = @user.city
+      dt Address
+      dd.address = @user.address
+    div.text-right
+      - if can? :update, @user
+        = link_to 'Edit', edit_user_path(@user)
+        = " | "
+      = link_to 'Questions', questions_path
+
+div.clearfix
+div.map = gmaps map_options: {auto_zoom: false, zoom: 15}, markers: {data: @user.to_gmaps4rails}
