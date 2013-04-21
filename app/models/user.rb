@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :votes
 
-  acts_as_gmappable check_process: :check_process?
+  acts_as_gmappable check_process: :check_process?, process_geocoding: :persisted?
 
   ADMIN = 'admin'
   MODERATOR = 'moderator'
