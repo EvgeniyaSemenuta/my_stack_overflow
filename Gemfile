@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
 gem 'rails', '3.2.12'
 
 # Bundle edge Rails instead:
@@ -17,8 +18,6 @@ gem 'acts-as-taggable-on', '~> 2.3.1'
 gem 'paperclip'
 
 gem 'gmaps4rails'
-
-gem 'mysql2'
 
 gem 'will_paginate'
 
@@ -53,6 +52,15 @@ group :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'launchy'
+end
+
+group :development, :test do
+  gem 'mysql2'
+end
+
+group :production do
+  gem 'pg'
+  gem 'thin'
 end
 
 
