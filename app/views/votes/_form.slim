@@ -1,3 +1,3 @@
 = form_for([votable, Vote.new], remote: true, html: {id: dom_id(votable, "new_vote"), class: "new_vote"}) do |f|
-  = f.submit "+", name: "vote[positive]"
-  = f.submit "-", name: "vote[negative]"
+  = f.submit "+", name: "vote[positive]", class: "btn btn-block btn-small"
+  = f.submit "-", name: "vote[negative]", class: "btn btn-block btn-small"
