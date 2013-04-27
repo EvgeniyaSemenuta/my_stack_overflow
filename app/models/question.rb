@@ -10,6 +10,8 @@ class Question < ActiveRecord::Base
 	has_many :answers
   has_many :votes, as: :votable
   has_many :reviews
+  has_many :reviewers, through: :reviews, source: :user
+
 
   validates :title, presence: true
   validates :text, presence: true

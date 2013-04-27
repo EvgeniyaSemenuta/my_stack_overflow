@@ -27,6 +27,59 @@ describe "index questions page" do
     page.should have_selector("#question_#{question2.id} .reviews", text: "1")
   end
 
+  it "should change review count" do
+    user = FactoryGirl.create(:user)
+    question = FactoryGirl.create(:question, title: "Some question")
+
+    sign_in user
+    visit questions_path
+
+    page.should have_selector("#question_#{question.id} .reviews", text: "0")
+
+    within("#question_#{question.id} .title") do
+      click_link "Some question"
+    end
+
+    click_link "Questions"
+
+    page.should have_selector("#question_#{question.id} .reviews", text: "1")
+  end
+
+  it "should not change review count for guest" do
+    question = FactoryGirl.create(:question, title: "Some question")
+
+    visit questions_path
+
+    page.should have_selector("#question_#{question.id} .reviews", text: "0")
+
+    within("#question_#{question.id} .title") do
+      click_link "Some question"
+    end
+
+    click_link "Questions"
+
+    page.should have_selector("#question_#{question.id} .reviews", text: "0")
+  end
+
+  it "should not change review count twice for user" do
+    user = FactoryGirl.create(:user)
+    question = FactoryGirl.create(:question, title: "Some question")
+    FactoryGirl.create(:review, question: question, user: user)
+
+    sign_in user
+    visit questions_path
+
+    page.should have_selector("#question_#{question.id} .reviews", text: "1")
+
+    within("#question_#{question.id} .title") do
+      click_link "Some question"
+    end
+
+    click_link "Questions"
+
+    page.should have_selector("#question_#{question.id} .reviews", text: "1")
+  end
+
   it "should display all questions" do
   	question1 = FactoryGirl.create(:question, title: "jQuery")
     question2 = FactoryGirl.create(:question, title: "PHP")

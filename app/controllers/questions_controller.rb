@@ -11,6 +11,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    if current_user && @question.reviewer_ids.exclude?(current_user.id)
+      @question.reviewers << current_user
+    end
   end
 
   def new
