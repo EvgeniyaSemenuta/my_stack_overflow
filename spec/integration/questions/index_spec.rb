@@ -13,6 +13,20 @@ describe "index questions page" do
     page.should have_selector("#question_#{question.id} .user", text: "john")
   end
 
+  it "should display reviews count" do
+    question1 = FactoryGirl.create(:question)
+    FactoryGirl.create(:review, question: question1)
+    FactoryGirl.create(:review, question: question1)
+
+    question2 = FactoryGirl.create(:question)
+    FactoryGirl.create(:review, question: question2)
+
+    visit questions_path
+
+    page.should have_selector("#question_#{question1.id} .reviews", text: "2")
+    page.should have_selector("#question_#{question2.id} .reviews", text: "1")
+  end
+
   it "should display all questions" do
   	question1 = FactoryGirl.create(:question, title: "jQuery")
     question2 = FactoryGirl.create(:question, title: "PHP")

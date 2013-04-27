@@ -42,4 +42,9 @@ FactoryGirl.define do
     association :user
     rating 1
   end
+
+  factory :review do
+    association :user
+    association :question
+  end
 end
