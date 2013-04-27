@@ -1,29 +1,36 @@
-= form_for(question) do |f|
-  - if question.errors.any?
-    div#error_explanation
-      h2 = "#{pluralize(question.errors.count, "error")} prohibited this question from being saved:"
+div
+  div.pull-left
+    = form_for(question, html: { class: 'form-horizontal' }) do |f|
+      - if question.errors.any?
+        div#error_explanation
+          h2 = "#{pluralize(question.errors.count, "error")} prohibited this question from being saved:"
 
-      ul
-        - question.errors.full_messages.each do |msg|
-          li = msg
+          ul
+            - question.errors.full_messages.each do |msg|
+              li = msg
 
-  div
-    = f.label :title
-    br
-    = f.text_field :title
-  div
-    = f.label :text
-    br
-    = f.text_area :text, :cols => 80, :rows => 10
-  div
-    = hidden_field_tag "question[tag_array][]"
-    - tag_names.each do |tag_name|
-      = label_tag "tag_#{tag_name}", tag_name
-      = check_box_tag "question[tag_array][]", tag_name, question.tag_list.include?(tag_name), id: "tag_#{tag_name}"
-    div#tags
+      div.control-group
+        = f.label :title, class: 'control-label'
+        div.controls
+          = f.text_field :title
+      div.control-group
+        = f.label :text, class: 'control-label'
+        div.controls
+          = f.text_area :text, :cols => 80, :rows => 10
+      div#tags
+        = hidden_field_tag "question[tag_array][]"
+        - tag_names.each do |tag_name|
+          = label_tag "tag_#{tag_name}", class: 'checkbox inline' do
+            = check_box_tag "question[tag_array][]", tag_name, question.tag_list.include?(tag_name), id: "tag_#{tag_name}"
+            = tag_name
+      br
+      div.control-group
+        div.actions.controls
+          = f.submit
 
-  div.actions
-    = f.submit
-
-= text_field_tag :new_tag
-br
+  div.form-horizontal.pull-left
+    div.control-group
+      = label_tag :new_tag, 'New tag', class: 'control-label'
+      div.controls
+        = text_field_tag :new_tag
+.clearfix

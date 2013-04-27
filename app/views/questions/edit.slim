@@ -2,6 +2,7 @@ h1 Editing question
 
 = render 'form', question: @question, tag_names: @question.tag_list
 
-= link_to 'Show', @question
-=" | "
-= link_to 'Back', questions_path
+div.text-center
+  = link_to 'Show', @question
+  =" | "
+  = link_to 'Questions', questions_path
