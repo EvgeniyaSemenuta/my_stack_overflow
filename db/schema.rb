@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418185544) do
+ActiveRecord::Schema.define(:version => 20130427112900) do
 
   create_table "answers", :force => true do |t|
     t.text     "text",        :null => false
@@ -22,12 +22,21 @@ ActiveRecord::Schema.define(:version => 20130418185544) do
   end
 
   create_table "questions", :force => true do |t|
-    t.string   "title",                     :null => false
-    t.string   "text",                      :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "user_id",    :default => 0, :null => false
+    t.string   "title",      :null => false
+    t.string   "text",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id",    :null => false
   end
+
+  create_table "reviews", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.integer  "question_id", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "reviews", ["user_id", "question_id"], :name => "index_reviews_on_user_id_and_question_id", :unique => true
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

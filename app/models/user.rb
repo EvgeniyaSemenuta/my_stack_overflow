@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
   has_many :votes
+  has_many :reviews
 
   acts_as_gmappable check_process: :check_process?, process_geocoding: :persisted?
 
