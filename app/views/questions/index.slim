@@ -8,6 +8,8 @@ table.table.table-striped
     th Date
     th Tags
     th Reviews
+    th Answers
+    th Rating
     th
     th
 
@@ -20,6 +22,8 @@ table.table.table-striped
       td = question.created_at.to_s(:db)
       td.tags = question.tag_list.join(" ")
       td.reviews = question.reviews.count
+      td = question.answers.count
+      td = question.rating
       td
         - if can? :update, question
           = link_to 'Edit', edit_question_path(question)
