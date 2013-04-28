@@ -25,6 +25,8 @@ gem 'omniauth'
 
 gem 'omniauth-twitter'
 
+gem 'factory_girl_rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -42,14 +44,12 @@ gem 'jquery-rails'
 
 group :development do
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
 end
 
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'launchy'
 end
