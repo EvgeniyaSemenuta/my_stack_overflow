@@ -12,7 +12,7 @@ FactoryGirl.define do
 	end
 
 	factory :user do
-		sequence(:email) { |n| "email#{n}@mail.ru"}
+		sequence(:email) { |n| "email#{n}@mailinator.com"}
     password "12345678"
     password_confirmation "12345678"
     sequence(:login) { |n| "login#{n}"}
