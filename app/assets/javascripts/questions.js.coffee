@@ -10,7 +10,7 @@ $ ->
 
     false
 
-  $('form.new_vote').on 'ajax:success', (e, data, status, xhr)->
+  $('#answers').on 'ajax:success', 'form.new_vote', (e, data)->
     $(this).parents(".rating").find(".rating-number").html data["rating"]
     $(this).remove()
 
