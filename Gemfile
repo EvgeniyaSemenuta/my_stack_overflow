@@ -27,6 +27,9 @@ gem 'omniauth-twitter'
 
 gem 'factory_girl_rails'
 
+gem 'pg'
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -54,12 +57,7 @@ group :test do
   gem 'launchy'
 end
 
-group :development, :test do
-  gem 'mysql2'
-end
-
 group :production do
-  gem 'pg'
   gem 'thin'
 end
 
