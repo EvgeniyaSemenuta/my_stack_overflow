@@ -9,7 +9,7 @@ describe "index questions page" do
     visit questions_path
 
     page.should have_selector("#question_#{question.id} .title", text: "jQuery")
-    page.should have_selector("#question_#{question.id} .tags", text: "tag1 tag2")
+    page.should have_selector("#question_#{question.id} .tags", text: "tag2 tag1")
     page.should have_selector("#question_#{question.id} .user", text: "john")
   end
 
